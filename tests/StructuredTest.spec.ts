@@ -3,7 +3,6 @@ import { LoginPage } from '../pages/LoginPage';
 
 
 test.beforeEach (async({page}) => {
-
   await page.goto('/');
 })
 

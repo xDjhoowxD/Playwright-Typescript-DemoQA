@@ -2,9 +2,6 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { ProductsPage } from '../pages/ProductsPage';
 
-// test.beforeAll (async({page}) => {
-// })
-
 test.beforeEach (async({page}) => {
   await page.goto('/');
 })
