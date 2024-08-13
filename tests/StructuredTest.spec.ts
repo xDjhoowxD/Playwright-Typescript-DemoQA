@@ -8,7 +8,7 @@ test.beforeEach (async({page}) => {
 })
 
 
-test('test', async ({ page }) => {
+test('Full structured test', async ({ page }) => {
   await expect(page.locator('#root')).toContainText('Swag Labs');
   await page.locator('[data-test="username"]').click();
   await page.locator('[data-test="username"]').fill('wrongUser');
