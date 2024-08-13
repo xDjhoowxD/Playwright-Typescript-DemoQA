@@ -6,7 +6,7 @@ import { ProductsPage } from '../pages/ProductsPage';
 // })
 
 test.beforeEach (async({page}) => {
-  await page.goto('https://www.saucedemo.com/');
+  await page.goto('/');
 })
 
 test("Add Backpack to the Cart", async ({page}) => { 
@@ -81,7 +81,7 @@ test("Add All Products to the Cart", async ({page}) => {
   const product6 = "Test.allTheThings() T-Shirt (Red)"
 
   await loginPage.validLogin()
-  
+
   await productsPage.addProductToCart(product1)
   await productsPage.validateCartQuantity("1")
 

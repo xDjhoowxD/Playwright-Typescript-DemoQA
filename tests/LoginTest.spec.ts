@@ -6,7 +6,7 @@ import { LoginPage } from '../pages/LoginPage';
 
 test.beforeEach (async({page}) => {
 
-  await page.goto('https://www.saucedemo.com/');
+  await page.goto('/');
 })
 
 test("Login with invalid username and invalid passowrd", async ({page}) => { 
