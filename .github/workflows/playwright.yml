@@ -33,3 +33,10 @@ jobs:
         name: junit-report
         path: test-results/results.xml
         retention-days: 30
+    - name: Publish JUnit Report
+      uses: mikepenz/action-junit-report@v3
+      if: always()
+      with:
+        report_paths: 'test-results/results.xml'
+        # Optional: Add inline report to GitHub checks
+        include_in_checks: true
