@@ -8,7 +8,7 @@ test.beforeEach (async({page}) => {
   await page.goto('/');
 })
 
-test("Login with invalid username and invalid passowrd", async ({page}) => { 
+test("Login with invalid username and invalid password", async ({page}) => { 
   const loginPage = new LoginPage(page)
   const username = "aaa"
   const password = "bbb"

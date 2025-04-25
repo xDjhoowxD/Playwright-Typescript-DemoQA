@@ -5,6 +5,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@alex_neo/playwright-azure-reporter": "^1.13.1",
     "playwright": "^1.46.0"
   },
   "scripts": {}
