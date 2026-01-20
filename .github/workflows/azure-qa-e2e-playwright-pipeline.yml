@@ -1,0 +1,46 @@
+# azure-pipelines.yml
+trigger: none            
+pr:
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  # Node
+  - task: NodeTool@0
+    inputs:
+      versionSource: 'spec'
+      versionSpec: '18.x'
+    displayName: 'Use Node.js 18'
+
+  # Install deps (use your package-lock.json)
+  - script: |
+      npm ci
+      npx playwright install
+    displayName: 'Install deps & Playwright browsers'
+
+  # Run tests (Azure sets TF_BUILD=true automatically)
+  - script: |
+      npm run e2e
+    displayName: 'Run Playwright E2E'
+    continueOnError: true   # so the publish steps still run if tests fail
+
+  # Publish JUnit (from your config path: playwright/reports/automation-report.xml)
+  - task: PublishTestResults@2
+    displayName: 'Publish JUnit test results'
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'automation-report.xml'
+      searchFolder: '$(System.DefaultWorkingDirectory)/playwright/reports'
+      failTaskOnFailedTests: false
+
+  # (Optional) Publish the HTML report folder as a pipeline artifact
+  - task: PublishPipelineArtifact@1
+    displayName: 'Upload HTML report'
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/playwright/reports/html-report'
+      #artifact: 'playwright-html-report'
+      publishLocation: 'pipeline'
